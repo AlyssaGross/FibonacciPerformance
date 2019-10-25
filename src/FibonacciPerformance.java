@@ -32,7 +32,7 @@ public class FibonacciPerformance {
         fibFunc[3] = (long x)-> { return fibMatrix(x);};
 
         // for every fibonacci function
-        for (int func = 1; func < 2; func++) {
+        for (int func = 0; func < 4; func++) {
             // if the function is fibRecur use a small number of trials and a smaller maximum input
             if(func == 1) {
                 numberOfTrials = 4;
@@ -51,7 +51,7 @@ public class FibonacciPerformance {
            for (int run = 1; run <= 3; run++) {
                 System.out.println("\nExperiment Run " + run + " of " + fibFuncNames[func]);
                 System.out.println("------------------------------------------------------");
-                runFullExperiment(fibFunc[func], (fibFuncNames[func] + "-Run" + run), (func == 2));
+                runFullExperiment(fibFunc[func], (fibFuncNames[func] + "-Run" + run ), (func == 2));
             }
 
            // run the full experiment with a counter rather than timing, as another way to see the order of growth
@@ -66,8 +66,6 @@ public class FibonacciPerformance {
         // if x = 0 return 0 and if x = 1 return 1
         if(x <= 1)
         {
-            // uncomment if running experiment with counter
-            // counter++;
             return x;
         }
         else
@@ -137,14 +135,14 @@ public class FibonacciPerformance {
     static long fibMatrix(long x)
     {
         // if x = 0 return 0 and if x = 1 return 1
-        if(x<=1)
-            return x;
+        if(x == 0)
+            return 0;
         // create the matrix used to calculate fibonacci numbers
         long [][] matrix = {{1,1},{1,0}};
         //calculate the matrix to the x+1 power (the results of the matrix are off by one o
-        matrix = matrixPower(matrix, x+1);
+        matrix = matrixPower(matrix, x);
         //return the bottom right value in the matrix as the value of fib(x)
-        return matrix[1][1];
+        return matrix[0][1];
     }
 
     static long [][] matrixPower( long[][] x, long y)
@@ -174,9 +172,9 @@ public class FibonacciPerformance {
         for(int i = 0; i < bits; i++)
         {
             // uncomment if running the experiment with a counter
-            // counter++
+            // counter++;
             // uncomment if running the experiment with a spin loop
-            // for(long spin = 0; spin < 500000; spin++) {}
+            // for(long spin = 0; spin < 5000000; spin++) {}
 
             // if not the first bit, set secondToLast equal to to last * last
             if(i > 0)
